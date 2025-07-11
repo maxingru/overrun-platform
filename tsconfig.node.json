@@ -8,12 +8,97 @@
     "playwright.config.*",
     "eslint.config.*"
   ],
+  //编译参数
   "compilerOptions": {
-    "noEmit": true,
+    "noEmit": true, //不会生成编译结果(.js,.d.ts等),只进行类型检查
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
 
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "types": ["node"]
+    "module": "ESNext", //将.ts中的导入导出转为module指定的模块格式)
+    "moduleResolution": "Bundler",  //模块定位算法：如何查找模块路径。 当前代码被其他打包器处理。
+    "types": ["node"] //nodejs的类型全局下都可用，不需要手动import
   }
 }
+
+
+
+/*
+1.TS要编译的.ts文件
+files:[] 指定TS要编译的文件列表。
+  使用include和exclude来代替files
+include:[] 指定要编译的文件列表。
+exclude:[] 指定要排除的文件列表。
+
+2.配置文件(tsconfig.js)：
+extends:""    指定要继承的tsconfig.json配置文件，会合并和扩展配置文件。
+  -1 可以继承本地文件 :extends:'../tsconfig.base.json'
+    [如果路径不是以./或../开头，那么会从node_modules中查找配置文件]
+  -2 可以继承npm上发布的tsconfig.json文件
+      [先从npm上下载：npm install @tsconfig/demo -D]
+      [可以在node_modules/@tsconfig目录下看到下载的配置文件]
+      [继承该文件，"extends": "@tsconfig/deno/tsconfig.json"]
+
+3.类型声明文件(.d.ts)：
+内置的类型声明文件：
+  lib:[]：加载哪些TS内置的类型声明文件:dom/es6
+    跟三斜线指令/// <reference lib="" />作用相同。
+外部类型声明文件：[node_module/@types/xxx]
+  [如果项目中使用了第三方代码库，那么就需要这个库的类型声明文件。
+  又分为：-1这个库自带类型声明文件。-2这个库没自带但社区(DefinitelyTyped)有需要单独安装.-3自己为这个库写一个类型声明文件]
+  typeRoots:[] 用来指定第三方库的类型声明文件的位置，默认node_modules/@types目录下的类型声明文件(.d.ts)。
+      目录下的所有.d.ts文件都会被ts自动编译。
+  types:['node']  指定第三方库的类型声明文件的位置。
+      如果没指定，则以typeRoots为准。
+      如果指定了，只有其中列出的模块才会自动加入编译。
+      //node_module/@types/node
+      如果"types": []，就表示不会自动将所有@types模块加入编译
+
+5.reference
+references:[] 当前项目依赖的其他ts子项目，每个ts子项目有自己的tsconfig.json
+
+
+
+paths:{'@/*':['.src/*']}
+  设置模块名和模块路径的映射。
+  TS中如何导入require或imports语句加载的模块。
+  .ts文件中 '@/*' -> './src/*'
+
+
+tsBuildInfoFile: '' ,加速增量编译  //=命令： --build
+  TypeScript 可以基于之前的编译结果，只重新编译变化的部分
+resolveJsonModule:允许 import 命令导入 JSON 文件
+allowImportingTsExtensions :在import时必须显式写.ts 文件扩展名
+jsx:如何处理.tsx文件。 preserve：保持 jsx 语法不变，输出的文件名为.jsx
+jsxImportSource:ts需要知道从哪里导入jsx的运行时。 vue;
+moduleDetection：ts如何识别一个文件是否被视为模块。force：强制所有文件被视为模块，即使没有 import/export。（避免变量污染）
+noImplicitThis:ts判断this如果被推断为any是否报错。 true:报错
+
+verbatimModuleSyntax:
+  开启时：类型的import/export必须带type。文件的导入导出会原样保留，不会被ts转为其他形式的语法。
+
+target:ts编译后的js代码的版本：
+esModuleInterop: es6 模块和 commonjs 模块的兼容操作。
+  开启时：import * as xxx from 'xxx' 会被转为 import xxx from 'xxx'
+  关闭时：import * as xxx from 'xxx' 会被转为 import xxx = require('xxx')
+
+forceConsistentCasingInFileNames: 文件的大小写敏感
+  开启时：文件的大小写必须一致。
+  关闭时：文件的大小写可以不一致。
+skipLibCheck:跳过对声明文件.d.ts（）的类型检查。
+  开启时：ts会跳过对所有声明文件（包括内置库和第三方类型定义）的类型检查
+
+strict:true,
+  strictBindCallApply:
+  strictFunctionTypes
+  strictNullChecks
+  strictPropertyInitialization:类的实例属性必须初始化。
+  noImplicitAny:
+  noImplicitThis:
+  useUnknownInCatchVariables:在catch中使用unknown来代替any。
+  使用时必须缩小类型范围。
+  if(err instanceof Error){
+    //err是Error类型
+  }
+
+
+
+*/

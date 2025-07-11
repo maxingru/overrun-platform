@@ -1,6 +1,6 @@
 {
-  "files": [],
-  "references": [
+  "files": [],    //类型声明文件
+  "references": [ //依赖的子项目。(保证不同环境下代码的类型正确)
     {
       "path": "./tsconfig.node.json"
     },
@@ -10,5 +10,7 @@
     {
       "path": "./tsconfig.vitest.json"
     }
-  ]
+  ],
 }
+
+
