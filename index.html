@@ -2,19 +2,30 @@
 <html lang="">
   <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" href="/static/favicon.ico">
+    <link rel="stylesheet" href="/static/loading.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vite App</title>
+    <title>%VITE_APP_TITLE%</title>
     <!--CDN + npm回退-->
     <!--<script src ='https://cdn.jsdelivr.net/npm/vue'></script>-->
     <!--<script>-->
     <!--  window.Vue ?? document.write('<script src="/lib/vue.global.min.js"><\\/script>');-->
     <!--</script>-->
+    <script src="/config/config.js"></script>
   </head>
   <body>
-    <div id="app"></div>
-
+    <noscript>
+      <strong>当前%VITE_APP_TITLE%无法工作在JavaScript被禁用的浏览器，请确保已允许JavaScript</strong>
+    </noscript>
+    <div id="app">
+      <div class="loading">
+        <div class="loading-spinner"></div>
+        <p>%VITE_APP_TITLE% Loading......</p>
+      </div>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
+
+
 

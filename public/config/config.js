@@ -1,47 +1,17 @@
-//1.每个点位只需要修改config.ts文件
 /*
+每个点位只需要修改config.ts文件
 * 后台(平台/可视化/报表/上传服务)：9100
 * 超限平台前端：9101
 * 可视化平台前端：9102
 * 离线地图：9103
 * */
 
-//服务器部署
-// 'apiBaseurl': 'http://192.168.1.80:9100/OverrunService3/',
-//   // 报表url
-//   'reportBaseurl': 'http://192.168.1.80:9100/',
-//   'dataviewBaseurl': 'http://192.168.1.80:9102/#/',
-//   'mapBaseUrl': '192.168.1.80:9103',
-
-//可视化平台：9102
-//地图：9103
-
-// 我搞成一套枚举类型的
-
 const GlobalConfig = {
   //完整的请求后代的url: http://192.168.1.25:9100/OverrunService3Feicheng/OverrunService.svc
-
-  //生产
-  // apiBaseurl:'http://192.168.1.80:9100/OverrunService3/',
-  //本地(本地IIS)
-  // 'apiBaseurl': 'http://localhost:29376/',
-  //同事(同事ip+后端接口)
-  apiBaseurl: 'http://192.168.1.25:9100/OverrunService3Feicheng/',
-
-
-
-  // 报表：在服务器上改为对应IP地址+端口
-  'reportBaseurl': 'http://192.168.1.165:9100/',
-  // 'reportBaseurl': 'https://www.sdqinlv.cn/',
-  // 可视化平台：在服务器上改为对应ip+端口
-  // 'dataviewBaseurl': 'http://192.168.1.165:9102/#/',
-  'dataviewBaseurl': 'http://app.chuanqisoft.com/dataview/#/',
-  // 地图点位经纬度点位边界：在服务上改为对应ip+端口
-  // 'mapBaseUrl': 'http://192.168.1.165:9103',
-
-  // 地图点位经纬度点位边界：在服务上改为对应ip+端口
-  // 'mapBaseUrl': 'http://192.168.1.165:9103',
-  mapBaseUrl: 'app.chuanqisoft.com/BaiduMapOffline',
+  apiBaseurl:'http://192.168.1.80:9100/OverrunService3/',
+  reportBaseurl: 'http://192.168.1.80:9100/',
+  dataviewBaseurl: 'http://192.168.1.80:9102/#/',
+  mapBaseUrl: '192.168.1.80:9103',
   mapCenterLat: 35.6305582144,
   mapCenterLng: 116.998213401,
   mapCity: '曲阜',

@@ -34,6 +34,8 @@ const enum MediaTypes {
 }
 2.env.d.ts文件是干啥的？？ 1.看下vite中的ts配置？vite.d.ts？？？
 
+1.工具类型跑一遍. 2.declare看下 和 env.d.ts为啥需要
+
 
 # MDN
 // 3.MDN的这个底部的promise和微任务？？
@@ -90,7 +92,6 @@ https://cn.vuejs.org/api/composition-api-setup.html#accessing-props
 # 开发进度
 
 # git操作 
-    ## commit message and change log
 1.我先把master的commit -> push
 2.新增一个dev分支 -> 开发。
 
@@ -138,14 +139,15 @@ $ commitizen init cz-conventional-changelog --save --save-exact
 
 
 # 待解决
-先下载这个git 提交规范的工具。   -> 然后直接使用。
--2 生成change log的工具。 [这个看下啥时候用]
--1 https://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html
 -3 预发布模式是什么？是能直接看到打包后的内容？？
+1.git 的 npm run release -- --prerelease alpha
+2.npm的 npm run preview
 
+3.看http的书!!!!!!!
 
 
 # 不同之间的版本问题：
+最基础的超限平台版本是tag v1.0.0
 -1 直接 remote clone下 tag v1.0.0 -> 每个点位最初的原始版本。 (就不需要再管了)
 
 
@@ -163,3 +165,86 @@ gzip同理。都写。 【压缩】
 
 # devServer
 proxy代理？？？
+
+# 待办
+// 1.我要修改(.env.development 和 )了，让其他地方能使用全局变量。
+// 2.TS语法的支持
+// 3.提交git 新增dev分支
+3.TS 中性的题目
+
+# 动画
+requestAnimationFrame 这个API的动画渲染帧？？
+@vueuse/motion Motion底层基于requestAnimationFrame优化渲染，动画流畅不掉帧。即使页面元素再多，也能丝滑运行，对移动端尤其友好。
+？？怎么实现的？
+5.动画效果使用 <Transition> 代替css的transitio
+库：
+VueUse Motion、Anime.js 、GSAP
+Framer Motion(react 也有vue的)
+
+
+
+
+# SVG
+stroke-dasharray: 90, 150;
+stroke-dashoffset: 0;
+stroke-width: 2;
+stroke: #409eff;
+stroke-linecap: round; 
+用这来来解决一个loading 的border-color:transparent;的变长,而不是固定的长度
+怎么用svg代替一个border的html元素实现的?
+
+
+
+# # 开发进度
+# index.html + config.js 配置
+# 环境变量文件配置 + 公共文件配置
+1.env.d.ts
+新增环境变量 + 环境变量的类型定义
+1.index.html
+#app挂载之前的加载进度。
+
+2.nprogress 的 路由守卫中使用.
+-1 导入js -2 导入style
+
+
+# 路由
+-1 服务器端如何配置 适应history模式?
+https://router.vuejs.org/zh/guide/essentials/history-mode.html
+-2 
+全局守卫
+单个路由独享的守卫
+组件内守卫
+
+router中 ts类型的源码位置:
+https://github.com/vuejs/router/blob/main/packages/router/src/types/index.ts
+
+
+# store库
+自己实现一下路由和store
+https://cn.vuejs.org/guide/scaling-up/routing.html#simple-routing-from-scratch
+路由中 花裤衩文章中提到的问题看下.
+
+
+# 插件
+https://router.vuejs.org/zh/guide/#%E6%B3%A8%E5%86%8C%E8%B7%AF%E7%94%B1%E5%99%A8%E6%8F%92%E4%BB%B6
+
+
+# 博客:
+vue-router v4.x中 typescript使用说明 
+vue-router中的工具类型.
+
+
+# 开发流程
+-1 定下目录
+-2 区分环境变量 
+-2 NProgress 路由守卫 symbol的icon 
+-3 封装axios   UI库
+-5 静态路由 +  动态路由 [不同用户权限/条件路由/]
+
+
+# http
+authorization  权限验证
+HTTP Authorization 请求标头
+auth 是 Axios 的一个配置选项，用于 HTTP 基本认证（HTTP Basic Authentication）
+
+params 和 data需要编码后传输过去。。

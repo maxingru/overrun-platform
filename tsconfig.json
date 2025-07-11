@@ -1,6 +1,8 @@
+// 只保留基础配置，具体环境下由子文件tsconfig.json覆盖
 {
-  "files": [],    //类型声明文件
-  "references": [ //依赖的子项目。(保证不同环境下代码的类型正确)
+  "files": [],    //需要编译的ts文件
+  //依赖的子项目。(需要针对不同环境(前端app、后端node、测试vitest)配置不同的tsconfig.json文件)
+  "references": [
     {
       "path": "./tsconfig.node.json"
     },

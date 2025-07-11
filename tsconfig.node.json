@@ -15,7 +15,7 @@
 
     "module": "ESNext", //将.ts中的导入导出转为module指定的模块格式)
     "moduleResolution": "Bundler",  //模块定位算法：如何查找模块路径。 当前代码被其他打包器处理。
-    "types": ["node"] //nodejs的类型全局下都可用，不需要手动import
+    "types": ["node"] //typeRoots(node_module/@types) + types 第三方库的类型声明文件.d.ts ; =///<reference types=''>
   }
 }
 
@@ -28,7 +28,7 @@ files:[] 指定TS要编译的文件列表。
 include:[] 指定要编译的文件列表。
 exclude:[] 指定要排除的文件列表。
 
-2.配置文件(tsconfig.js)：
+2.配置文件(tsconfig.json)：
 extends:""    指定要继承的tsconfig.json配置文件，会合并和扩展配置文件。
   -1 可以继承本地文件 :extends:'../tsconfig.base.json'
     [如果路径不是以./或../开头，那么会从node_modules中查找配置文件]
@@ -36,6 +36,7 @@ extends:""    指定要继承的tsconfig.json配置文件，会合并和扩展�
       [先从npm上下载：npm install @tsconfig/demo -D]
       [可以在node_modules/@tsconfig目录下看到下载的配置文件]
       [继承该文件，"extends": "@tsconfig/deno/tsconfig.json"]
+
 
 3.类型声明文件(.d.ts)：
 内置的类型声明文件：

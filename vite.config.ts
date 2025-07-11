@@ -1,7 +1,7 @@
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import vueDevTools from 'vite-plugin-vue-devtools'
+// import vueDevTools from 'vite-plugin-vue-devtools'
 
 /*
 vite在开发服务器和打包时：
@@ -14,7 +14,8 @@ vite在开发服务器和打包时：
 
 export default defineConfig({
   base: '', //dev or prod's common base url
-  plugins: [vue(), vueDevTools()],
+  // plugins: [vue(), vueDevTools()],
+  plugins: [vue()],
   publicDir:'public',
   resolve: {
     alias: {
