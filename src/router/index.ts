@@ -4,9 +4,17 @@ import type {Router,RouteRecordRaw,RouterHistory} from 'vue-router';
 import {progressStart,progressEnd} from '@/utils/nprogress.ts';
 
 
+/*
+* 1. 仅在路由拦截器中判断是否有token
+*
+*
+*
+* */
+
+
+
 // ===========================
 // 注意在使用Vue-router的任意选项和API 时,都先看下文档中该TS类型是什么
-
 // =============================
 
 //1.配置一下动态和静态路由
@@ -43,13 +51,38 @@ const router:Router = createRouter({
 //router-guard
 router.beforeEach((to,from)=>{
   progressStart();
+
+
+
+  /**
 //   2.给router.onError() 如何注册一个错误处理函数????
+
+  问题：
+  1.动态路由要拉取role后才能addRoutes？？？？？
+  原因？？？
+
+// generate accessible routes map based on roles
+  const accessRoutes = await store.dispatch('permission/generateRoutes', roles)
+
+  // dynamically add accessible routes
+  router.addRoutes(accessRoutes)
+
+  问题：
+   2. next(`/login?redirect=${to.path}`) ???redirect是啥意思？
+  //1.这里跳转到登录页面时 -> 为啥还有一个redirect呢？？？
+  // next(`/login?redirect=${to.path}`)
+  // NProgress.done()
+  问题：
+  3.[测试一下：不把登录放在白名单内会一直重复跳转么]
+
+  **/
 });
 
 
 
 router.afterEach((to,from)=>{
   progressEnd();
+
 });
 
 export default router;

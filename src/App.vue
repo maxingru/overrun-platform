@@ -6,24 +6,29 @@
     <!--</div>-->
   </header>
   <main>
-    <TheWelcome  ref="wel"/>
+    <!--<TheWelcome  ref="wel"/>-->
     <div>
     <!--  子组件-->
-  <span ref="span">测试测试</span>
+  <!--<span ref="span">测试测试</span>-->
       <!--<FooA ref="fooRef"/>-->
       <!--<component :is="Math.random()>0.5?FooA:BarA" ref="comp"/>-->
-      <MyGenericModal ref="modal"/>
+      <!--<MyGenericModal ref="modal"/>-->
+
+
+
+      <div @click="openMsg">测试点击</div>
+
     </div>
 </main>
 </template>
 <!--泛型组件-->
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-import FooA from '@/views/demo/FooA.vue'
-import BarA from '@/views/demo/BarA.vue'
-import MyGenericModal from '@/views/demo/MyGenericModal.vue'
-import type {ComponentExposed} from 'vue-component-type-helpers'
+// import HelloWorld from './components/HelloWorld.vue'
+// import TheWelcome from './components/TheWelcome.vue'
+// import FooA from '@/views/demo/FooA.vue'
+// import BarA from '@/views/demo/BarA.vue'
+// import MyGenericModal from '@/views/demo/MyGenericModal.vue'
+// import type {ComponentExposed} from 'vue-component-type-helpers'
 
 // import {useTemplateRef,onMounted} from "vue";
 //
@@ -48,6 +53,17 @@ import type {ComponentExposed} from 'vue-component-type-helpers'
 //   //1.modal.value是一个泛型组件的实例。
 // })
 
+import {ElMessage} from 'element-plus';
+const openMsg = ()=>{
+  ElMessage({
+    type:'success',
+    message:"测试",
+    duration:7000,
+    showClose:true,
+    grouping:true,
+    plain:true,
+  })
+}
 
 
 

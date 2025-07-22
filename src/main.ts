@@ -1,12 +1,29 @@
 import './assets/main.css'
 //element-plus
-import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
-//
-// import {services} from "@/utils/request";
 
-// const res = services({url:'login',method:})
+import service from "@/utils/request";
+
+
+// const params = {a:1,b:2};
+const params = new URLSearchParams();
+params.append('a',"1");
+params.append('b',"2");
+
+const res = service({url:'http://127.0.0.1:4523/m1/5540151-5217011-default/login',method:'get',
+  params,
+}).then(res=>{
+  console.log("res", res);
+}).catch(err=>{
+  console.log("err",err);
+})
+
 //
+
+
+
+
+
 
 //router -> plugin
 import router from './router/index'
@@ -19,11 +36,7 @@ const app = createApp(App)
 // app.provide('app', {});  -> 可以用来编写插件
 // console.log("env:",import.meta.env);
 
-// console.log("结果:",GlobalConfig);
-if(!import.meta.env.DEV){
-  alert("生产环境");
-  // 测试一下这里。
-}
+
 
 // const {DEV,VITE_GLOBAL_CONFIG} = import.meta.env;
 // console.log( DEV);
@@ -31,8 +44,7 @@ if(!import.meta.env.DEV){
 // console.log("结构:",JSON.parse(VITE_GLOBAL_CONFIG));
 
 
-app.use(ElementPlus).use(router).mount('#app')
-
+app.use(router).mount("#app");
 
 
 

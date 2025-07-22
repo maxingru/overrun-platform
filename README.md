@@ -138,12 +138,6 @@ $ commitizen init cz-conventional-changelog --save --save-exact
 
 
 
-# 待解决
--3 预发布模式是什么？是能直接看到打包后的内容？？
-1.git 的 npm run release -- --prerelease alpha
-2.npm的 npm run preview
-
-3.看http的书!!!!!!!
 
 
 # 不同之间的版本问题：
@@ -248,3 +242,82 @@ HTTP Authorization 请求标头
 auth 是 Axios 的一个配置选项，用于 HTTP 基本认证（HTTP Basic Authentication）
 
 params 和 data需要编码后传输过去。。
+
+# 用户名密码 和 params 需要加密吗？？？
+
+
+
+
+# 待解决
+-3 预发布模式是什么？是能直接看到打包后的内容？？
+1.git 的 npm run release -- --prerelease alpha
+2.npm的 npm run preview
+
+3.看http的书!!!!!!!
+3.过一遍TS工具类型 + ts的题目
+3.看下阮一峰的JS教程中的 IndexedDB API等对象。
+3.URLSerchParams？？？ FormData对象等一系列的。 url编码解码 url.encoded decoded
+3.fetch？？？？
+
+axios的错误处理+ vue的错误处理 + 取消请求等、
+第二个问题： 看下稀土的针对逻辑层和视图的拆分的博客
+
+
+# 请求-> 路由 ->登录的这一套流程整理一下。 
+请求和路由跳转不同：(不一定同时发生)
+请求：
+-1 每个请求都带token。如果没有token也会正常发送请求(因为某些接口可能允许匿名访问->前端不应该阻止请求而是交给后端决定返回404还是数据。)
+-2 如果某些接口必须认证token不存在就阻止发送
+
+//请求拦截器use(config=>{//这里你可以手动抛出错误阻止发送请求/Promise.reject()->axios.catch中而不是到error中},error=>{//这里是请求配置出错了，需要你将错误抛出到axios.catch});
+//响应拦截器use(response=>{//这里表示请求成功且响应成功2xx。Promise.reject()只是我手动抛出错误到axios.catch中，不会到error中},error=>{//响应超出2xx})
+响应：
+-1 根据响应code(token过期/非法/不存在) -> 报错/重新登录
+
+路由跳转(判断token+role+用户信息)：
+-1 每次跳转都先判断是否有token
+    有  ->跳转的页面是login -> 跳转到首页
+        ->不是login       -> 正常跳转[如果未拉取role和info -> 先拉取] 
+                               -1 满足权限进入  -> 进入
+                               -2 这里我有点奇怪！！！【只需要判断当前用role就能直接进入了？还是说拉取role并满足目标页面需要的role才行？   拉取info 和 拉取role是一回事？ 】
+    无 -> 要跳转路由页面是否在白名单内(即页面不需要token属于公共页面/login 和 login/redirect) -> 是 -> 正常跳转
+                                                             否 -> 跳转登录页面
+
+
+
+# 把token过期/单点登录都放在请求响应中处理 -> 而不是在路由守卫中处理原因：
+-1 触发路由守卫不一定触发请求 
+-2 token过期/单点登录冲突仅在响应中收到
+
+
+
+# 路由：先过一遍老项目的流程。
+
+//1.但是这个不会涉及到重新拉取token？？
+
+[测试一下：不把登录放在白名单内会一直重复跳转么]
+
+权限和用户名(role和info)：
+
+1.单点登录怎么搞？
+//单点登录的话就不需要每次请求拉取最新的info。 保留在本地的cookie中就行
+
+
+= {AutoLogin:'dd',LoginName:'admin'} ;//当前token + 当前用户的用户名
+
+[//]: # (下载一个nginx ,然后在本地部署访问慢的官网？？？)
+
+[//]: # (单点登录：https://juejin.cn/post/7483708438683287587)
+[//]: # (vue3源码：https://zhuanlan.zhihu.com/p/1908987265839010468)
+[//]: # (CI/CD:https://zhuanlan.zhihu.com/p/31604837208)
+
+
+[//]: # (//全局黑色皮肤的背景)
+
+
+# 加一个
+table的编辑的文本或输入框/下拉框 （方便的）
+
+1.axios的 proxy
+2.vite的proxy
+3.url的编码和解码 (阮一峰的JS)
