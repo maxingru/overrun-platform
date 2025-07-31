@@ -16,13 +16,28 @@
 
 
 
-      <div @click="openMsg">测试点击</div>
 
     </div>
 </main>
 </template>
 <!--泛型组件-->
+
+
+
+
 <script setup lang="ts">
+import {ref,onMounted} from 'vue';
+
+//这里默认就是beforeCreate /created
+
+onMounted(()=>{
+    console.log("环境变量：",JSON.parse(import.meta.env.VITE_GLOBAL_CONFIG));
+})
+
+
+
+
+
 // import HelloWorld from './components/HelloWorld.vue'
 // import TheWelcome from './components/TheWelcome.vue'
 // import FooA from '@/views/demo/FooA.vue'
@@ -53,17 +68,17 @@
 //   //1.modal.value是一个泛型组件的实例。
 // })
 
-import {ElMessage} from 'element-plus';
-const openMsg = ()=>{
-  ElMessage({
-    type:'success',
-    message:"测试",
-    duration:7000,
-    showClose:true,
-    grouping:true,
-    plain:true,
-  })
-}
+// import {ElMessage} from 'element-plus';
+// const openMsg = ()=>{
+//   ElMessage({
+//     type:'success',
+//     message:"测试",
+//     duration:7000,
+//     showClose:true,
+//     grouping:true,
+//     plain:true,
+//   })
+// }
 
 
 

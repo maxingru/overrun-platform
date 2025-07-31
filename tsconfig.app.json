@@ -1,7 +1,7 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
-  //include：中要包含env.d.ts， 就是所有的ts文件都需要在tsconfig.json中包裹了，才会被ts编译。
   //我的public/config/config.js不会被ts编译,但我使用时会报类型错误，所以要在env.d.ts中声明
+  //include:要被ts编辑器编译的ts文件。
   "include": ["env.d.ts", "src/**/*", "src/**/*.vue","public/config/config.js"],
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {

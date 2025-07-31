@@ -228,12 +228,7 @@ vue-router v4.x中 typescript使用说明
 vue-router中的工具类型.
 
 
-# 开发流程
--1 定下目录
--2 区分环境变量 
--2 NProgress 路由守卫 symbol的icon 
--3 封装axios   UI库
--5 静态路由 +  动态路由 [不同用户权限/条件路由/]
+
 
 
 # http
@@ -321,3 +316,34 @@ table的编辑的文本或输入框/下拉框 （方便的）
 1.axios的 proxy
 2.vite的proxy
 3.url的编码和解码 (阮一峰的JS)
+
+
+# 封装一个el-select的包含一键多选+ 一键取消多选的。 打包一下。
+
+
+# https://bgithub.xyz/PanJiaChen/vue-element-admin/blob/master/src/components/Charts/mixins/resize.js
+
+-1 封装图表组件 + debounce的resize
+chart.dispose()？？
+dispose？ 销毁定时器、绑定的DOM节点？ 事件监听？ 销毁实例？
+
+
+# ========================================================================================
+# 开发日志
+1.环境变量文件
+.env .env.development
+-1 生成下都在dist/config
+-2 开发下在.env.development
+新增类型声明文件 ：为自定义的外部接口添加类型声明
+
+
+-2 区分环境变量
+-2 NProgress 路由守卫 symbol的icon
+-3 封装axios   UI库
+-5 静态路由 +  动态路由 [不同用户权限/条件路由/]
+
+
+# 问题
+1.环境问题和mode问题
+"preview": "vite preview", 这个 和 预发布模式 --mode staging有啥区别？？？
+

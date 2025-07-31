@@ -92,8 +92,6 @@ axios.interceptors.response.use(response=>{
     //3. 区分close 和 cancel
     //3. 可拖放
   }
-
-
   return Promise.resolve(response.data);
 
   //根据后端返回code ： token过期/非法token/单点登录
