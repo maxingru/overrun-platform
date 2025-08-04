@@ -3,7 +3,6 @@
  * @description: 路由导航间的进度条
  * */
 import NProgress from 'nprogress';
-import 'nprogress/nprogress.css';
 NProgress.configure({
   minimum:0.08,
   easing:'ease',
@@ -19,4 +18,26 @@ const progressEnd:()=>void = ()=>{
   NProgress.done();
 }
 export {progressStart,progressEnd};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

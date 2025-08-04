@@ -335,15 +335,38 @@ dispose？ 销毁定时器、绑定的DOM节点？ 事件监听？ 销毁实例�
 -1 生成下都在dist/config
 -2 开发下在.env.development
 新增类型声明文件 ：为自定义的外部接口添加类型声明
+2.封装nprogress
+放入路由守卫
+3.封装axios
+-1 请求+token/name  
+//请求： 判断请求参数类型 + 添加token +username
+//如果不存在token  -> 也正常发送请求 (某些公共页面可能不需要token)
+//1.先判断method：在params 还是 data中添加token
+//2.判断params/data的类型 —> 如何添加token
+-2 响应  跳转 取消Controller？ AbortController 统一的错误处理？？？
+//确实响应错误。 token过期/非法/其他用户登录。正常响应
+
+3.登录
+1.账号密码发送给服务端，服务端验证通过 返回token
+2.token存入cookie . 再利用token拉取user_info + role
+3.动态根据当前用户的role算出对应的路由 -> addRoute挂载动态路由。
+vuex每次刷新页面内容都会丢失 -> 每次刷新都会根据token拉取user_info + rolr ->route?
+
+5.路由 权限
+静态路由 +  动态路由 [不同用户权限/条件路由/]
 
 
--2 区分环境变量
--2 NProgress 路由守卫 symbol的icon
--3 封装axios   UI库
--5 静态路由 +  动态路由 [不同用户权限/条件路由/]
 
 
 # 问题
 1.环境问题和mode问题
 "preview": "vite preview", 这个 和 预发布模式 --mode staging有啥区别？？？
+2.proxy的跨域？？ nginx？
+3.单元测试？
+单点登录?清除token？
+换肤
+跨域(开发proxy 生产nginx)
 
+文章：
+手把手使用icon：
+https://juejin.cn/post/6844903517564436493

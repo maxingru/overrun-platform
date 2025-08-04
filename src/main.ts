@@ -1,50 +1,44 @@
 import './assets/main.css'
-//element-plus
+//element-plus -> plugin
+import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css'
-
-import service from "@/utils/request";
-
-
-// const params = {a:1,b:2};
-const params = new URLSearchParams();
-params.append('a',"1");
-params.append('b',"2");
-
-const res = service({url:'http://127.0.0.1:4523/m1/5540151-5217011-default/login',method:'get',
-  params,
-}).then(res=>{
-  console.log("res", res);
-}).catch(err=>{
-  console.log("err",err);
-})
-
-//
-
-
-
-
-
 
 //router -> plugin
 import router from './router/index'
+
+//progress
+import 'nprogress/nprogress.css';
+
+
+
+import service from '@/utils/request';
+async function testAxios(){
+    const res = await service({method:'post',
+      url:'http://127.0.0.1:4523/m2/5540151-5217011-default/330867972',
+      data:{a:1,b:2}});
+    console.log("res的结果：",res);
+}
+//要是响应报错 -> 在这里拿到了结果。
+testAxios();
+
+
+
+
+
+
 
 //app
 import { createApp } from 'vue'
 import App from './App.vue'
 const app = createApp(App)
+app.use(ElementPlus).use(router).mount("#app");
+
+
+
 //  在这个整个应用中提供一个依赖 -> 任意位置任意组件中都可以使用
 // app.provide('app', {});  -> 可以用来编写插件
 // console.log("env:",import.meta.env);
 
-
-
-// const {DEV,VITE_GLOBAL_CONFIG} = import.meta.env;
-// console.log( DEV);
-// const {} = import.meta.env
-// console.log("结构:",JSON.parse(VITE_GLOBAL_CONFIG));
-
-
-app.use(router).mount("#app");
 
 
 

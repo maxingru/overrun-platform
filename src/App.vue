@@ -14,8 +14,7 @@
       <!--<component :is="Math.random()>0.5?FooA:BarA" ref="comp"/>-->
       <!--<MyGenericModal ref="modal"/>-->
 
-
-
+    <el-button @click="openBox" type="success" size="small">打开Box</el-button>
 
     </div>
 </main>
@@ -26,14 +25,41 @@
 
 
 <script setup lang="ts">
-import {ref,onMounted} from 'vue';
-
+import {ElMessageBox} from 'element-plus';
+import {ref,onMounted,markRaw} from 'vue';
+import {Position} from '@element-plus/icons-vue';
 //这里默认就是beforeCreate /created
 
 onMounted(()=>{
-    console.log("环境变量：",JSON.parse(import.meta.env.VITE_GLOBAL_CONFIG));
+    // console.log("环境变量：",JSON.parse(import.meta.env.VITE_GLOBAL_CONFIG));
 })
+async function openBox(){
+  console.log("position:",Position);
+  // const res = ElMessageBox.alert("message!","Title",{
+  //   confirmButtonText:"ok"
+  // }).then(res=>{
+  //   console.log("then",typeof res);
+  // }).catch(err=>{
+  //   console.log("catch",err);
+  // });
+  const res = await ElMessageBox.confirm("Message","Title",{
+    type:"info",
+    confirmButtonText:'确定',
+    cancelButtonText:"取消",
+    distinguishCancelAndClose:true,
+    draggable:true,
+    // icon:markRaw(Position),
+    icon:markRaw(Position),
+  }).then(res=>{
+    console.log("res的结果：",res);
+  }).catch(err=>{
+    console.log("catch的结果",err);
+  });
 
+
+  //默认：点击取消 、点击遮罩层、点击关闭 、ESC  -> 都触发catch
+
+}
 
 
 
